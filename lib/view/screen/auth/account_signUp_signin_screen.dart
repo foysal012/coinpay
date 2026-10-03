@@ -1,6 +1,8 @@
+import 'package:coinpay/resources/constant/app_color.dart';
 import 'package:flutter/material.dart';
 import '../../../resources/constant/app_image.dart';
 import '../../../resources/constant/app_style.dart';
+import 'signup/enter_phone_number_screen.dart';
 
 class AccountSignupSigninScreen extends StatefulWidget {
   const AccountSignupSigninScreen({super.key});
@@ -23,77 +25,81 @@ class _AccountSignupSigninScreenState extends State<AccountSignupSigninScreen> {
         height: MediaQuery.sizeOf(context).height,
         width: MediaQuery.sizeOf(context).width,
         color: Colors.white,
-        child: Column(
-          children: [
-            Image.asset(AppImage.signUpSigning, fit: BoxFit.fill),
-            AppStyle.gap20,
-
-            Text('Create Your\nCoinpay account',
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              AppStyle.gap60,
+          
+              Image.asset(AppImage.signUpSigning, fit: BoxFit.fill),
+              AppStyle.gap40,
+          
+              Text('Create Your\nCoinpay account',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22.0
+                  )
+              ),
+              AppStyle.gap10,
+          
+              Text('Coinpay is a powerful tool that allows you to easily send, receive and track all yout transections.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black38,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.0
+                  )
+              ),
+              AppStyle.gap40,
+              
+              MaterialButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => EnterPhoneNumberScreen()));
+                },
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                height: 44.0,
+                minWidth: MediaQuery.sizeOf(context).width,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadiusGeometry.all(Radius.circular(20.0))
+                ),
+                textColor: Colors.white,
+                color: AppColor.primaryColor,
+                child: Text('Sign up'),
+              ),
+              AppStyle.gap10,
+          
+              MaterialButton(
+                onPressed: () {
+          
+                },
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                height: 44.0,
+                minWidth: MediaQuery.sizeOf(context).width,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusGeometry.all(Radius.circular(20.0)),
+                    side: BorderSide(color: AppColor.primaryColor, width: 2.0)
+                ),
+                textColor: AppColor.primaryColor,
+                // color: Colors.blueAccent,
+                child: Text('Log in'),
+              ),
+              AppStyle.gap40,
+          
+              RichText(
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22.0
-                )
-            ),
-            AppStyle.gap10,
-
-            Text('Coinpay is a powerful tool that allows you to easily send, receive and track all yout transections.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black38,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14.0
-                )
-            ),
-            AppStyle.gap40,
-            
-            MaterialButton(
-              onPressed: () {
-                
-              },
-              padding: EdgeInsets.symmetric(vertical: 8.0),
-              height: 44.0,
-              minWidth: MediaQuery.sizeOf(context).width,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusGeometry.all(Radius.circular(20.0))
-              ),
-              textColor: Colors.white,
-              color: Colors.blue,
-              child: Text('Sign up'),
-            ),
-            AppStyle.gap10,
-
-            MaterialButton(
-              onPressed: () {
-
-              },
-              padding: EdgeInsets.symmetric(vertical: 8.0),
-              height: 44.0,
-              minWidth: MediaQuery.sizeOf(context).width,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusGeometry.all(Radius.circular(20.0)),
-                  side: BorderSide(color: Colors.blue, width: 2.0)
-              ),
-              textColor: Colors.blue,
-              // color: Colors.blueAccent,
-              child: Text('Log in'),
-            ),
-            AppStyle.gap40,
-
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text: 'By continuing you accept our\n',
-                style: TextStyle(fontSize: 12, color: Colors.black54, fontWeight: FontWeight.w500),
-                children: const <TextSpan>[
-                  TextSpan(text: 'Terms of Service', style: TextStyle(fontSize: 12, color: Colors.blue, fontWeight: FontWeight.w500, decoration: TextDecoration.underline, decorationThickness: 2.0)),
-                  TextSpan(text: ' and '),
-                  TextSpan(text: 'Privacy Policy', style: TextStyle(fontSize: 12, color: Colors.blue, fontWeight: FontWeight.w500, decoration: TextDecoration.underline, decorationThickness: 2.0)),
-                ],
-              ),
-            )
-          ],
+                text: TextSpan(
+                  text: 'By continuing you accept our\n',
+                  style: TextStyle(fontSize: 12, color: Colors.black54, fontWeight: FontWeight.w500),
+                  children: <TextSpan>[
+                    TextSpan(text: 'Terms of Service', style: TextStyle(fontSize: 12, color: AppColor.primaryColor, fontWeight: FontWeight.w500, decoration: TextDecoration.underline, decorationThickness: 2.0)),
+                    TextSpan(text: ' and '),
+                    TextSpan(text: 'Privacy Policy', style: TextStyle(fontSize: 12, color: AppColor.primaryColor, fontWeight: FontWeight.w500, decoration: TextDecoration.underline, decorationThickness: 2.0)),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
