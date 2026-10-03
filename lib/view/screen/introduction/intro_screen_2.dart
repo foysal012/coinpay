@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../../resources/constant/app_style.dart';
 
 class IntroScreen2 extends StatelessWidget {
   const IntroScreen2({super.key});
@@ -21,7 +22,7 @@ class IntroScreen2 extends StatelessWidget {
               height: 200,
               fit: BoxFit.fill,
             ),
-            Gap(20.0),
+            AppStyle.gap20,
 
             Text('Spend money abroad, and track your expense',
                 maxLines: 2,

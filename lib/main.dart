@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'splash/splash_screen.dart';
+import 'view/screen/auth/account_signUp_signin_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: AccountSignupSigninScreen(),
     );
   }
 }
