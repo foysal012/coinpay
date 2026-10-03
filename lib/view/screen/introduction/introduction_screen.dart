@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../../resources/constant/app_style.dart';
 import '../bottom_navbar/bottom_nav_bar_screen.dart';
 import 'intro_screen_1.dart';
 import 'intro_screen_2.dart';
@@ -105,7 +105,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                       controller.jumpToPage(index);
                     }
                 ),
-                Gap(20.0),
+                AppStyle.gap20,
 
                 lastPage?
                 GestureDetector(
