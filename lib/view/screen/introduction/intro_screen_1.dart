@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../../resources/constant/app_style.dart';
 
 class IntroScreen1 extends StatelessWidget {
