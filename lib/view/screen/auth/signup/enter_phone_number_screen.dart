@@ -18,7 +18,10 @@ class _EnterPhoneNumberScreenState extends State<EnterPhoneNumberScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () => debugPrint('ok'), icon: Icon(Icons.arrow_back_ios_new)),
+        leading: IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: Icon(Icons.arrow_back_ios_new)
+        ),
         backgroundColor: Colors.white,
         elevation: 0.5
       ),
