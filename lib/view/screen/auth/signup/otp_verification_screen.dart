@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../resources/constant/app_color.dart';
 import '../../../../resources/constant/app_style.dart';
+import 'create_account_screen.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key, required this.phone});
@@ -19,7 +20,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: IconButton(onPressed: () => debugPrint('ok'), icon: Icon(Icons.arrow_back_ios_new)),
+          leading: IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: Icon(Icons.arrow_back_ios_new)
+          ),
           backgroundColor: Colors.white,
           elevation: 0.5
       ),
@@ -74,7 +78,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
             MaterialButton(
               onPressed: () {
-                // Navigator.of(context).push(MaterialPageRoute(builder: (context) => EnterPhoneNumberScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateAccountScreen()));
               },
               padding: EdgeInsets.symmetric(vertical: 8.0),
               height: 44.0,
