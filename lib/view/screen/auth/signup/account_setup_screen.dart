@@ -1,3 +1,5 @@
+import 'package:coinpay/utils/app_utils.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import '../../../../resources/constant/app_color.dart';
 import '../../../../resources/constant/app_style.dart';
@@ -20,6 +22,7 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
   final dateOfBirthTextController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+  final dropDownKey = GlobalKey<DropdownSearchState>();
 
   @override
   void dispose() {
@@ -321,61 +324,90 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
                 Text('Date of Birth'),
                 AppStyle.gap5,
             
-                TextFormField(
-                  controller: postcodeTextController,
-                  maxLines: 1,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: AppStyle.radius10,
-                        borderSide: BorderSide(
-                            color: AppColor.primaryColor,
-                            width: 2.0
-                        )
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: AppStyle.radius10,
-                        borderSide: BorderSide(
-                            color: AppColor.primaryColor,
-                            width: 2.0
-                        )
-                    ),
-                    errorBorder: OutlineInputBorder(
-                        borderRadius: AppStyle.radius10,
-                        borderSide: BorderSide(
-                            color: AppColor.appRed,
-                            width: 2.0
-                        )
-                    ),
-                    hintText: "MM/DD/YYYY",
-                    prefixIcon: Icon(Icons.calendar_month)
-                  ),
-                  validator: (value) {
-                    if(value.toString().isEmpty){
-                      return "Please Enter Valid postcode";
-                    } else {
-                      return null;
-                    }
+                GestureDetector(
+                  onTap: () async{
+                    DateTime? date = await showDatePicker(
+                        context: context, 
+                        firstDate: DateTime(2020), 
+                        lastDate: DateTime.now(),
+                    );
+                    debugPrint("okey${date}");
+                    dateOfBirthTextController.text = AppUtils.setDateDMY('$date');
                   },
+                  child: TextFormField(
+                    controller: dateOfBirthTextController,
+                    maxLines: 1,
+                    enabled: false,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: AppStyle.radius10,
+                          borderSide: BorderSide(
+                              color: AppColor.primaryColor,
+                              width: 2.0
+                          )
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: AppStyle.radius10,
+                          borderSide: BorderSide(
+                              color: AppColor.primaryColor,
+                              width: 2.0
+                          )
+                      ),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: AppStyle.radius10,
+                          borderSide: BorderSide(
+                              color: AppColor.appRed,
+                              width: 2.0
+                          )
+                      ),
+                      hintText: "MM/DD/YYYY",
+                      prefixIcon: Icon(Icons.calendar_month)
+                    ),
+                    validator: (value) {
+                      if(value.toString().isEmpty){
+                        return "Please Enter Valid date of birth";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                AppStyle.gap10,
+
+                DropdownSearch<String>(
+                  key: dropDownKey,
+                  selectedItem: '',
+                  itemAsString: (item) => item,
+                  compareFn: (i1, i2) => i1 == i2,
+                  items: (filter, infiniteScrollProps) => ,
+                  decoratorProps: DropDownDecoratorProps(
+                    decoration: InputDecoration(
+                      labelText: 'ui mode: ',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  popupProps: PopupProps.menu(
+                      fit: FlexFit.loose, constraints: BoxConstraints()),
                 ),
                 AppStyle.gap20,
             
-                MaterialButton(
-                  onPressed: () {
-                    if(formKey.currentState!.validate()){
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Successfully account created')));
-                    }
-                  },
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  height: 44.0,
-                  minWidth: MediaQuery.sizeOf(context).width,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.all(Radius.circular(20.0))
-                  ),
-                  textColor: Colors.white,
-                  color: AppColor.primaryColor,
-                  child: Text('Sign up'),
-                ),
+                // MaterialButton(
+                //   onPressed: () {
+                //     if(formKey.currentState!.validate()){
+                //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Successfully account created')));
+                //     }
+                //   },
+                //   padding: EdgeInsets.symmetric(vertical: 8.0),
+                //   height: 44.0,
+                //   minWidth: MediaQuery.sizeOf(context).width,
+                //   shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadiusGeometry.all(Radius.circular(20.0))
+                //   ),
+                //   textColor: Colors.white,
+                //   color: AppColor.primaryColor,
+                //   child: Text('Sign up'),
+                // ),
                 AppStyle.gap20,
               ],
             ),
