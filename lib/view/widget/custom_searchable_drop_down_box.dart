@@ -1,8 +1,6 @@
-import 'package:coinpay/resources/constant/app_style.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import '../../resources/constant/app_color.dart';
-import '../../utils/app_utils.dart';
+import '../../resources/constant/app_style.dart';
 
 class CustomSearchableDropDownBox<T> extends StatelessWidget {
   const CustomSearchableDropDownBox({
@@ -56,20 +54,30 @@ class CustomSearchableDropDownBox<T> extends StatelessWidget {
           return null;
         }
       },
-      decoratorProps: DropDownDecoratorProps(
-        decoration: InputDecoration(
-          isDense: true,
-          filled: true,
-          fillColor: AppColors.appWhite,
-          labelStyle: AppTextStyle.normalPrimaryText14,
-          hintText: hintText,
-          hintStyle: AppTextStyle.normalPrimaryText14,
-          border: AppUtils.enableWithoutBorder,
-          focusedBorder: AppUtils.focusBorder,
-          enabledBorder: AppUtils.enableWithoutBorder,
-          errorStyle: AppTextStyle.errorTextStyle,
-        ),
-      ),
+      // decoratorProps: DropDownDecoratorProps(
+      //   // decoration: InputDecoration(
+      //   //   isDense: true,
+      //   //   filled: true,
+      //   //   fillColor: AppColors.appWhite,
+      //   //   labelStyle: AppTextStyle.normalPrimaryText14,
+      //   //   hintText: hintText,
+      //   //   hintStyle: AppTextStyle.normalPrimaryText14,
+      //   //   border: AppUtils.enableWithoutBorder!,
+      //   //   focusedBorder: AppUtils.focusBorder,
+      //   //   enabledBorder: AppUtils.enableWithoutBorder,
+      //   //   errorStyle: AppTextStyle.errorTextStyle,
+      //   // ),
+      //   decoration: InputDecoration(
+      //     labelText: 'ui mode: ',
+      //     border: OutlineInputBorder(),
+      //   ),
+      // ),
+      // decoratorProps: DropDownDecoratorProps(
+      //   decoration: InputDecoration(
+      //     labelText: 'ui mode: ',
+      //     border: OutlineInputBorder(),
+      //   ),
+      // ),
       popupProps: PopupProps.menu(
         fit: FlexFit.loose,
         menuProps: MenuProps(
@@ -89,18 +97,27 @@ class CustomSearchableDropDownBox<T> extends StatelessWidget {
         // Search field
         searchFieldProps: TextFieldProps(
             style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: Colors.black26),
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: AppColors.appWhite,
-                border: AppUtils.enableBorder,
-                enabledBorder: AppUtils.enableBorder,
-                focusedBorder: AppUtils.enableBorder,
-                hintText: searchBoxHintText,
-                hintStyle: AppTextStyle.normalText14
-            )
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-            )
+            // decoration: InputDecoration(
+            //     filled: true,
+            //     fillColor: AppColors.appWhite,
+            //     border: AppUtils.enableBorder,
+            //     enabledBorder: AppUtils.enableBorder,
+            //     focusedBorder: AppUtils.enableBorder,
+            //     hintText: searchBoxHintText,
+            //     hintStyle: AppTextStyle.normalText14
+            // )
+            // decoration: InputDecoration(
+            //   border: OutlineInputBorder(),
+            // )
+            // decoration: DropdownSearchDecoration(
+            //     filled: true,
+            //     fillColor: AppColors.appWhite,
+            //     border: AppUtils.enableBorder,
+            //     enabledBorder: AppUtils.enableBorder,
+            //     focusedBorder: AppUtils.enableBorder,
+            //     hintText: searchBoxHintText,
+            //     hintStyle: AppTextStyle.normalText14
+            // )
         ),
 
         // Item List
