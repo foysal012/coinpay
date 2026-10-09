@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../resources/constant/app_color.dart';
 import '../../../../resources/constant/app_style.dart';
-import 'account_setup_screen.dart';
+import 'account_setup/account_setup_screen.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
