@@ -1,9 +1,11 @@
 import 'package:coinpay/utils/app_utils.dart';
-import 'package:coinpay/view/widget/custom_searchable_drop_down_box.dart';
-import 'package:dropdown_search/dropdown_search.dart';
+// import 'package:coinpay/view/widget/custom_searchable_drop_down_box.dart';
+import 'package:dropdown_flutter/custom_dropdown.dart';
+// import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import '../../../../resources/constant/app_color.dart';
-import '../../../../resources/constant/app_style.dart';
+import '../../../../../resources/constant/app_color.dart';
+import '../../../../../resources/constant/app_style.dart';
+import '../account_verification/account_verification_screen.dart';
 
 class AccountSetupScreen extends StatefulWidget {
   const AccountSetupScreen({super.key});
@@ -23,7 +25,7 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
   final dateOfBirthTextController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
-  final dropDownKey = GlobalKey<DropdownSearchState>();
+  // final dropDownKey = GlobalKey<DropdownSearchState>();
 
   final List<String> countries = [
     'Afghanistan',
@@ -224,17 +226,17 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
     'Zimbabwe',
   ];
 
-  @override
-  void dispose() {
-    emailTextController.dispose();
-    addressTextController.dispose();
-    cityTextController.dispose();
-    postcodeTextController.dispose();
-    fullNameTextController.dispose();
-    userNameTextController.dispose();
-    dateOfBirthTextController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   emailTextController.dispose();
+  //   addressTextController.dispose();
+  //   cityTextController.dispose();
+  //   postcodeTextController.dispose();
+  //   fullNameTextController.dispose();
+  //   userNameTextController.dispose();
+  //   dateOfBirthTextController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -294,9 +296,9 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
                   validator: (value) {
                     if(value.toString().isEmpty){
                       return "Please Enter Valid phone";
-                    } else if(value.toString().contains('@')){
+                    } else if(!value.toString().contains('@')){
                       return "Invalid email";
-                    } else if(!value.toString().endsWith('gmail.com')){
+                    } else if(!value.toString().endsWith('@gmail.com')){
                       return "Invalid email";
                     } else {
                       return null;
@@ -577,56 +579,71 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
 
                 Text('Country'),
                 AppStyle.gap5,
-                CustomSearchableDropDownBox<String>(
-                      dropDownKey: dropDownKey,
-                      dropDownItems: countries,
-                      dropDownBuilder: (context, selectedItem) {
-                        return Text('$selectedItem',style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600
-                        ));
-                      },
-                      labelText: 'Country',
-                      hintText: "Country",
-                      searchBoxHintText: "Search county by name",
-                      compareFn: (item1, item2) {
-                        return item1 == item2;
-                      },
-                      filterFn: (item, filter) {
-                        if(item.toLowerCase().contains(filter.toString().toLowerCase())){
-                          return true;
-                        } else{
-                          return false;
-                        }
-                      },
-                      itemBuilder: (context, item, isDisabled, isSelected, ) {
-                        return CustomSearchableDropdownItemBuilder(
-                            isSelected: isSelected,
-                            item: item
-                        );
-                      },
-                      onChange: (value) {
 
-                      },
-                  ),
+                // CustomSearchableDropDownBox<String>(
+                //       dropDownKey: dropDownKey,
+                //       dropDownItems: countries,
+                //       dropDownBuilder: (context, selectedItem) {
+                //         return Text('$selectedItem',style: TextStyle(
+                //           fontSize: 14,
+                //           fontWeight: FontWeight.w600
+                //         ));
+                //       },
+                //       labelText: 'Country',
+                //       hintText: "Country",
+                //       searchBoxHintText: "Search county by name",
+                //       compareFn: (item1, item2) {
+                //         return item1 == item2;
+                //       },
+                //       filterFn: (item, filter) {
+                //         if(item.toLowerCase().contains(filter.toString().toLowerCase())){
+                //           return true;
+                //         } else{
+                //           return false;
+                //         }
+                //       },
+                //       itemBuilder: (context, item, isDisabled, isSelected, ) {
+                //         return CustomSearchableDropdownItemBuilder(
+                //             isSelected: isSelected,
+                //             item: item
+                //         );
+                //       },
+                //       onChange: (value) {
+                //         debugPrint("$value");
+                //       },
+                //       isNeedValidation: true,
+                //       selectedItem: '',
+                //       validatorName: "Please select a country",
+                //       isEnable: true,
+                //   ),
+
+                ///
+
+                DropdownFlutter<String>.search(
+                    items: countries,
+                    onChanged: (p0) {
+                      debugPrint("$p0");
+                    },
+                ),
                 AppStyle.gap20,
             
-                // MaterialButton(
-                //   onPressed: () {
-                //     if(formKey.currentState!.validate()){
-                //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Successfully account created')));
-                //     }
-                //   },
-                //   padding: EdgeInsets.symmetric(vertical: 8.0),
-                //   height: 44.0,
-                //   minWidth: MediaQuery.sizeOf(context).width,
-                //   shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadiusGeometry.all(Radius.circular(20.0))
-                //   ),
-                //   textColor: Colors.white,
-                //   color: AppColor.primaryColor,
-                //   child: Text('Sign up'),
-                // ),
+                MaterialButton(
+                  onPressed: () {
+                    if(formKey.currentState!.validate()){
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Successfully account setup done')));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AccountVerificationScreen()));
+                    }
+                  },
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  height: 44.0,
+                  minWidth: MediaQuery.sizeOf(context).width,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.all(Radius.circular(20.0))
+                  ),
+                  textColor: Colors.white,
+                  color: AppColor.primaryColor,
+                  child: Text('Save & Continue'),
+                ),
                 AppStyle.gap20,
               ],
             ),
