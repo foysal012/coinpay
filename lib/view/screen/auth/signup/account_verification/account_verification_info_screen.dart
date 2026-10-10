@@ -75,9 +75,13 @@ class AccountVerificationInfoScreen extends StatelessWidget {
               // ),
               
               InkWell(
-                onTap: () {
+                onTap: () async{
 
-                  final image = ImagePicker().pickImage(source: ImageSource.camera);
+                  final picker = ImagePicker();
+                  final XFile? image = await picker.pickImage(source: ImageSource.camera);
+
+                  debugPrint('ok: ${image}');
+                  debugPrint('ok: ${image?.path}');
 
                   if(image.toString().isNotEmpty){
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => Placeholder()));
